@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Drive File Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://apis.google.com/js/api.js" async defer onload="gapiLoaded()"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer onload="gisLoaded()"></script>
+</head>
+<body>
+    <header class="header">
+        <h1>Call Center File Manager</h1>
+        <div id="userRoleSection">
+            <label for="role">Select Role:</label>
+            <select id="role" onchange="manageAccess()">
+                <option value="agent">Agent</option>
+                <option value="manager">Manager</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <section id="authSection">
+            <button id="authorize_button" onclick="handleAuthClick()" style="display: none;">Authorize</button>
+            <button id="signout_button" onclick="handleSignoutClick()" style="display: none;">Sign Out</button>
+        </section>
+
+        <section id="uploadSection" class="hidden">
+            <h3>Upload Files</h3>
+            <input type="file" id="file_input" multiple onchange="handleFileSelection()" />
+            <button onclick="uploadFiles()">Upload</button>
+            <ul id="file_list"></ul>
+        </section>
+
+        <section id="listSection">
+            <h3>Download Files</h3>
+            <button onclick="listFiles()">List Files</button>
+            <ul id="download_list"></ul>
+        </section>
+
+        <section id="configSection">
+            <h3>Google Drive Configuration</h3>
+            <label for="clientId">Client ID:</label>
+            <input type="text" id="clientId" placeholder="Enter your Client ID" /><br>
+            <label for="apiKey">API Key:</label>
+            <input type="text" id="apiKey" placeholder="Enter your API Key" /><br>
+            <button onclick="setCredentials()">Set Credentials</button>
+        </section>
+    </main>
+</body>
+<script src="script.js"></script>
+</html>
